@@ -1,11 +1,76 @@
 {
 	"info": {
-		"_postman_id": "40d7b351-4300-4f10-bf23-67485aac5ab9",
+		"_postman_id": "24b8f210-95f6-4a03-ac5c-20c8291735cd",
 		"name": "IRepair Backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "28720851"
 	},
 	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"john.doe@example.com\",\n    \"password\" : \"user123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{irepair_server_url}}/auth/login",
+							"host": [
+								"{{irepair_server_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbGUuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MDY2OTQ5MTUsImV4cCI6MTcwOTI4NjkxNX0.Om55SXf0lkdtMEpC-0L8F-HnBBYbOVPjwygknNB-hRY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"jhon@gmail.com\",\n    \"password\" : \"password1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{irepair_server_url}}/auth/refresh-token",
+							"host": [
+								"{{irepair_server_url}}"
+							],
+							"path": [
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "User",
 			"item": [
@@ -16,7 +81,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"john_doe\",\n    \"email\": \"john.doe@example.com\",\n    \"password\": \"securePassword\"\n    // ,\n    // \"role\": \"user\"\n}",
+							"raw": "{\n    \"username\": \"john_doe\",\n    \"email\": \"john.doe@example.com\",\n    \"password\": \"user123\"\n    // ,\n    // \"role\": \"user\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -477,7 +542,7 @@
 	"variable": [
 		{
 			"key": "irepair_server_url",
-			"value": "",
+			"value": "http://localhost:5000/api/v1",
 			"type": "string"
 		}
 	]

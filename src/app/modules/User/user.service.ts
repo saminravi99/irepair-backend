@@ -1,10 +1,15 @@
 import QueryBuilder from '../../builder/QueryBuilder';
+import { bcryptHelper } from '../../utils/bycryptHelper';
 import { UserSearchableFields } from './user.constant';
 import { IUser } from './user.interface';
 import { User } from './user.model';
 
 const createUser = async (user: IUser) => {
-  return await User.create(user);
+  const hashedPassword = await bcryptHelper.hashPassword(user.password);
+  return await User.create({
+    ...user,
+    password: hashedPassword,
+  });
 };
 
 const findUserById = async (userId: string) => {
